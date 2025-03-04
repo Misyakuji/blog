@@ -1,19 +1,18 @@
 ---
-title: Linux与运维
+title: 开发环境
 icon: laptop-code
 index: false
 date: 2025-03-05
 category:
   - linux
 tag:
-  - 运维
+  - 开发
 ---
 
 ## 常用技术
 
-- [发行版](distro.md)
+- [docker](docker.md)
 
-- [开发环境](dev.md)
+- [maven](maven.md)
 
-- [wsl](wsl.md)
-
+- [gradle](gradle.md)

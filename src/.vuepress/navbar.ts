@@ -34,7 +34,7 @@ export default navbar([
           "React",
         ],
       },
-      { text: "Docker运维", icon: "pen-to-square", link: "Linux/docker" },
+      { text: "Docker运维", icon: "pen-to-square", link: "dev/docker" },
     ],
   },
 ]);

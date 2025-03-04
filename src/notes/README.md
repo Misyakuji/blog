@@ -10,6 +10,6 @@ icon: laptop-code
 
 - [后端](backend/)
 
-- [Linux](Linux/)
+- [linux](linux/)
 
-- [Docker](Linux/docker.md)
+- [Docker](dev/docker.md)

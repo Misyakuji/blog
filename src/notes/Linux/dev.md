@@ -1,179 +1,12 @@
 ---
-title: Debian系
+title: 开发环境搭建
 icon: fab fa-markdown
-order: 2
+order: 3
 category:
   - Linux
 tag:
   - Markdown
 ---
-
-## WSL环境搭建
-
-#### 官方环境搭建参照
-
-https://learn.microsoft.com/zh-cn/windows/wsl/setup/environment
-
-#### 开启WSL
-
-###### 打开虚拟机平台功能：
-
-```
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-```
-
-###### 打开适用于Linux的Windows子系统功能：
-
-```
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-```
-
-#### 更新Linux内核
-
-下载最新安装包：
-
-- [适用于x64计算机的 WSL2 Linux内核更新包](https://link.zhihu.com/?target=https%3A//wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)。
-
-#### 设置WSL2为默认版本
-
-以管理员方式运行PowerShell运行命令，输入命令。
-
-```
-wsl --set-default-version 2
-```
-
-#### 安装发行版Linux
-
-微软商店直接安装
-
-[【WSL】WSL折腾之旅（2）安装ZSH和Docker - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/355493751)
-
-#### 列出WSL子系统
-
-```
-wslconfig /list
-wslconfig /l
-wsl --list
-wsl -l -v
-
-# 列出可下载的发行版
-wsl --list --online
-wsl -l -o
-```
-
-#### 安装发行版
-
-```
-wsl --install -d Debian
-
-```
-
-#### 关闭Debian子系统
-
-```
-wsl --terminate debian
-wsl -t debian
-```
-
-#### 关闭WSL
-
-```
-wsl --shutdown
-```
-
-#### 启动WSL
-
-```
-wsl
-```
-
-#### 注销指定的子系统
-
-```
-wslconfig /u Debian
-wsl --unregister Debian
-```
-
-#### 切换登录默认用户
-
-```powershell
-C:\Users\[用户名]\AppData\Local\Microsoft\WindowsApps\debian.exe config --default-user root
-```
-
-#### 设置默认发行版
-
-```shell
-wsl --set-default debian
-```
-
-#### wsl使用systemd
-
-#访问 [官方文档](https://learn.microsoft.com/zh-cn/windows/wsl/systemd#how-to-enable-systemd)
-
-```shell
-# 在/etc/wsl.conf中添加以下内容：
-[boot]
-systemd=true
-
-# 重启wsl
-
-# 验证
-systemctl list-unit-files --type=service
-```
-
-## Linux常用操作(debian系)
-
-#### Debian 发行版与代号
-
-```
-Debian 7 - Wheezy
-Debian 8 - Jessie
-Debian 9 - Stretch
-Debian 10 - Buster
-Debian 11 - Bullseye
-Debian 12 - Bookworm
-Debian 13 - Trixie (开发中)
-```
-
-#### 换源
-
-```properties
-# 中科大镜像站
-deb http://mirrors.ustc.edu.cn/debian/ bullseye main contrib non-free
-deb http://mirrors.ustc.edu.cn/debian/ bullseye-updates main contrib non-free
-deb http://mirrors.ustc.edu.cn/debian/ bullseye-backports main contrib non-free
-deb http://mirrors.ustc.edu.cn/debian-security/ bullseye-security main contrib non-free
-
-# 阿里云源
-deb http://mirrors.aliyun.com/debian/ buster main non-free contrib
-deb http://mirrors.aliyun.com/debian-security buster/updates main
-deb http://mirrors.aliyun.com/debian/ buster-updates main non-free contrib
-deb http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib
-
-# 腾讯云镜像站
-deb http://mirrors.tencent.com/debian/ bullseye main non-free contrib
-deb http://mirrors.tencent.com/debian-security/ bullseye-security main
-deb http://mirrors.tencent.com/debian/ bullseye-updates main non-free contrib
-deb http://mirrors.tencent.com/debian/ bullseye-backports main non-free contrib
-
-# 官方源
-deb http://deb.debian.org/debian bookworm main
-deb http://deb.debian.org/debian bookworm-updates main
-deb http://security.debian.org/debian-security bookworm-security main
-deb http://ftp.debian.org/debian bookworm-backports main
-```
-
-#### 一键更新软件包
-
-```shell
-sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
-```
-
-#### 安装常用软件
-
-```shell
-sudo apt install vim wget curl git gcc g++ systemctl net-tools neofetch openjdk-17-jdk maven nodejs npm ssh nmap redis mariadb
-```
 
 #### sudo 免密码
 
@@ -410,6 +243,17 @@ export PATH=$M2_HOME/bin:$PATH
 mvn -v
 ```
 
+#### MAVEN配置阿里云
+
+```shell
+# 在<mirrors>下添加
+    <mirror>
+      <id>alimaven</id>
+      <name>aliyun maven</name>
+      <mirrorOf>*</mirrorOf>
+      <url>https://maven.aliyun.com/repository/public/</url>
+    </mirror>
+```
 #### JAVA环境配置
 
 ```shell
